@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Каталог книг библиотеки. Поиск и фильтрация книг по автору, жанру и доступности.">
+    <meta name="keywords" content="книги, каталог, библиотека, поиск книг, автор, жанр">
+    <meta name="author" content="Библиотечная система">
+    <title>Каталог книг | Библиотека</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/books.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-book-open"></i>
+                    <span>Библиотека</span>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="books.html" class="active"><i class="fas fa-book"></i> Каталог</a></li>
+                    <li><a href="admin.html"><i class="fas fa-tachometer-alt"></i> Управление</a></li>
+                    <li><a href="auth.html" id="auth-link"><i class="fas fa-sign-in-alt"></i> Войти</a></li>
+                </ul>
+                
+                <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </nav>
+        </div>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="books.html" class="active"><i class="fas fa-book"></i> Каталог</a></li>
+                <li><a href="admin.html"><i class="fas fa-tachometer-alt"></i> Управление</a></li>
+                <li><a href="auth.html" id="mobile-auth-link"><i class="fas fa-sign-in-alt"></i> Войти</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="books-main">
+        <div class="container">
+            <div class="books-header">
+                <h1>Каталог книг</h1>
+                <p>Найдено: <span id="books-count">24</span> книг</p>
+                
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="search-input" placeholder="Поиск по названию или автору...">
+                    </div>
+                    <button class="btn btn-primary" id="search-btn">
+                        <i class="fas fa-search"></i> Найти
+                    </button>
+                </div>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="genre-filter"><i class="fas fa-tags"></i> Жанр:</label>
+                    <select id="genre-filter">
+                        <option value="">Все жанры</option>
+                        <option value="роман">Роман</option>
+                        <option value="фэнтези">Фэнтези</option>
+                        <option value="антиутопия">Антиутопия</option>
+                        <option value="классика">Классика</option>
+                        <option value="детектив">Детектив</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="availability-filter"><i class="fas fa-check-circle"></i> Доступность:</label>
+                    <select id="availability-filter">
+                        <option value="">Все</option>
+                        <option value="available">Доступны</option>
+                        <option value="borrowed">Выданы</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="sort-filter"><i class="fas fa-sort"></i> Сортировка:</label>
+                    <select id="sort-filter">
+                        <option value="title-asc">По названию (А-Я)</option>
+                        <option value="title-desc">По названию (Я-А)</option>
+                        <option value="author-asc">По автору (А-Я)</option>
+                        <option value="year-desc">По году (новые)</option>
+                        <option value="year-asc">По году (старые)</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-secondary" id="reset-filters">
+                    <i class="fas fa-redo"></i> Сбросить
+                </button>
+            </div>
+
+            <div class="books-container">
+                <!-- Десктопная таблица -->
+                <div class="books-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Название</th>
+                                <th>Автор</th>
+                                <th>Жанр</th>
+                                <th>Год</th>
+                                <th>Доступно</th>
+                                <th>Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody id="books-table-body">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="books-cards" id="books-cards">
+                </div>
+
+                <div class="pagination">
+                    <button class="pagination-btn" id="prev-page" disabled>
+                        <i class="fas fa-chevron-left"></i> Назад
+                    </button>
+                    
+                    <div class="page-numbers" id="page-numbers">
+                    </div>
+                    
+                    <button class="pagination-btn" id="next-page">
+                        Вперед <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <a href="index.html" class="footer-logo">
+                        <i class="fas fa-book-open"></i>
+                        <span>Библиотечная система</span>
+                    </a>
+                    <p>Современное решение для управления библиотечными процессами</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="books.html">Каталог книг</a></li>
+                        <li><a href="admin.html">Панель управления</a></li>
+                        <li><a href="auth.html">Вход в систему</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-envelope"></i> support@library.ru</p>
+                    <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Книжная, д. 10</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Библиотечная система. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/books.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

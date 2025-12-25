@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Панель управления библиотекой. Управление книгами, читателями и выданными книгами.">
+    <meta name="keywords" content="панель управления, библиотека, администратор, управление книгами">
+    <meta name="author" content="Библиотечная система">
+    <title>Панель управления | Библиотека</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-book-open"></i>
+                    <span>Библиотека</span>
+                </a>
+                
+                
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="books.html"><i class="fas fa-book"></i> Каталог</a></li>
+                    <li><a href="admin.html" class="active"><i class="fas fa-tachometer-alt"></i> Управление</a></li>
+                    <li><a href="#" id="logout-link"><i class="fas fa-sign-out-alt"></i> Выйти</a></li>
+                </ul>
+                
+                <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </nav>
+        </div>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="books.html"><i class="fas fa-book"></i> Каталог</a></li>
+                <li><a href="admin.html" class="active"><i class="fas fa-tachometer-alt"></i> Управление</a></li>
+                <li><a href="#" id="mobile-logout-link"><i class="fas fa-sign-out-alt"></i> Выйти</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <div class="container">
+            <div class="admin-header">
+                <h1>Панель управления</h1>
+                <p id="welcome-message">Добро пожаловать в панель управления библиотекой</p>
+            </div>
+
+            <div class="quick-actions">
+                <button class="action-btn" id="add-book-btn">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Добавить книгу</span>
+                </button>
+                <button class="action-btn" id="add-reader-btn">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Добавить читателя</span>
+                </button>
+                <button class="action-btn" id="issue-book-btn">
+                    <i class="fas fa-book-reader"></i>
+                    <span>Выдать книгу</span>
+                </button>
+                <button class="action-btn" id="view-statistics-btn">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Статистика</span>
+                </button>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="books">Книги</button>
+                <button class="admin-tab" data-tab="readers">Читатели</button>
+                <button class="admin-tab" data-tab="borrowed">Выданные книги</button>
+            </div>
+
+            <div class="admin-content">
+                <div class="tab-content active" id="books-tab">
+                    <div class="table-header">
+                        <h2>Управление книгами</h2>
+                        <div class="table-actions">
+                            <button class="btn btn-primary" id="refresh-books">
+                                <i class="fas fa-sync-alt"></i> Обновить
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Название</th>
+                                    <th>Автор</th>
+                                    <th>Жанр</th>
+                                    <th>Доступно</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="books-table">
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="loading" id="books-loading">
+                        <i class="fas fa-spinner fa-spin"></i> Загрузка книг...
+                    </div>
+                </div>
+
+                <!-- Вкладка Читатели -->
+                <div class="tab-content" id="readers-tab">
+                    <div class="table-header">
+                        <h2>Управление читателями</h2>
+                        <div class="table-actions">
+                            <button class="btn btn-primary" id="refresh-readers">
+                                <i class="fas fa-sync-alt"></i> Обновить
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>ФИО</th>
+                                    <th>Номер билета</th>
+                                    <th>Телефон</th>
+                                    <th>Статус</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="readers-table">
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="loading" id="readers-loading">
+                        <i class="fas fa-spinner fa-spin"></i> Загрузка читателей...
+                    </div>
+                </div>
+
+                <div class="tab-content" id="borrowed-tab">
+                    <div class="table-header">
+                        <h2>Выданные книги</h2>
+                        <div class="table-actions">
+                            <button class="btn btn-primary" id="refresh-borrowed">
+                                <i class="fas fa-sync-alt"></i> Обновить
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Книга</th>
+                                    <th>Читатель</th>
+                                    <th>Дата выдачи</th>
+                                    <th>Срок возврата</th>
+                                    <th>Статус</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="borrowed-table">
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="loading" id="borrowed-loading">
+                        <i class="fas fa-spinner fa-spin"></i> Загрузка данных...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+    <div class="modal" id="book-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="book-modal-title">Добавить книгу</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="book-form">
+                    <input type="hidden" id="book-id">
+                    
+                    <div class="form-group">
+                        <label for="book-title">Название книги *</label>
+                        <input type="text" id="book-title" required>
+                        <div class="error-message" id="book-title-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="book-author">Автор *</label>
+                        <input type="text" id="book-author" required>
+                        <div class="error-message" id="book-author-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="book-genre">Жанр</label>
+                        <input type="text" id="book-genre">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="book-isbn">ISBN</label>
+                            <input type="text" id="book-isbn">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="book-year">Год издания</label>
+                            <input type="number" id="book-year" min="1000" max="2100">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="book-publisher">Издательство</label>
+                        <input type="text" id="book-publisher">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="book-quantity">Количество экземпляров *</label>
+                        <input type="number" id="book-quantity" min="1" value="1" required>
+                        <div class="error-message" id="book-quantity-error"></div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary modal-close">Отмена</button>
+                        <button type="submit" class="btn btn-primary" id="book-submit">
+                            <span id="book-submit-text">Добавить книгу</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="confirm-modal">
+        <div class="modal-content small">
+            <div class="modal-header">
+                <h2>Подтверждение</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-message">Вы уверены, что хотите удалить эту запись?</p>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary modal-close">Отмена</button>
+                    <button type="button" class="btn btn-danger" id="confirm-delete">Удалить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <a href="index.html" class="footer-logo">
+                        <i class="fas fa-book-open"></i>
+                        <span>Библиотечная система</span>
+                    </a>
+                    <p>Современное решение для управления библиотечными процессами</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="books.html">Каталог книг</a></li>
+                        <li><a href="admin.html">Панель управления</a></li>
+                        <li><a href="auth.html">Вход в систему</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-envelope"></i> support@library.ru</p>
+                    <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Книжная, д. 10</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Библиотечная система. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

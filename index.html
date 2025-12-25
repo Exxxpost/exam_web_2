@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Онлайн1 система управления библиотекой. Учет книг, читателей и выданных изданий.">
+    <meta name="keywords" content="библиотека, книги, учет, читатели, библиотечная система">
+    <meta name="author" content="Библиотечная система">
+    <title>Главная | Библиотечная система</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-book-open"></i>
+                    <span>Библиотека</span>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="books.html"><i class="fas fa-book"></i> Каталог книг</a></li>
+                    <li><a href="admin.html"><i class="fas fa-tachometer-alt"></i> Панель управления</a></li>
+                    <li><a href="auth.html" id="auth-link"><i class="fas fa-sign-in-alt"></i> Войти</a></li>
+                </ul>
+                
+                <button class="hamburger" id="hamburger" aria-label="Меню" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </nav>
+        </div>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="books.html"><i class="fas fa-book"></i> Каталог книг</a></li>
+                <li><a href="admin.html"><i class="fas fa-tachometer-alt"></i> Панель управления</a></li>
+                <li><a href="auth.html" id="mobile-auth-link"><i class="fas fa-sign-in-alt"></i> Войти</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Цифровая система управления библиотекой</h1>
+                <p class="hero-text">Современное решение для учета книг, читателей и управления библиотечными процессами</p>
+                <div class="hero-buttons">
+                    <a href="books.html" class="btn btn-primary">Посмотреть каталог</a>
+                    <a href="auth.html" class="btn btn-secondary">Войти в систему</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-book-reader"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Возможности системы</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Учет книг</h3>
+                    <p>Полный каталог книг с информацией об авторе, жанре и доступности</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Читатели</h3>
+                    <p>Ведение базы данных читателей с историей выдачи книг</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Выдача книг</h3>
+                    <p>Учет выданных и возвращенных книг с контрольными сроками</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Отчетность</h3>
+                    <p>Анализ активности и статистика использования библиотечного фонда</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title">Библиотека в цифрах</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="books-count">0</div>
+                    <div class="stat-label">Книг в каталоге</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="readers-count">0</div>
+                    <div class="stat-label">Активных читателей</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="borrowed-count">0</div>
+                    <div class="stat-label">Выдано книг</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="available-count">0</div>
+                    <div class="stat-label">Доступно сейчас</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <a href="index.html" class="footer-logo">
+                        <i class="fas fa-book-open"></i>
+                        <span>Библиотечная система</span>
+                    </a>
+                    <p>Современное решение для управления библиотечными процессами</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="books.html">Каталог книг</a></li>
+                        <li><a href="admin.html">Панель управления</a></li>
+                        <li><a href="auth.html">Вход в систему</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-envelope"></i> support@library.ru</p>
+                    <p><i class="fas fa-phone"></i> +7 (951) 123-45-67</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Новосибирс, ул. Книжная, д. 10</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Библиотечная система. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
